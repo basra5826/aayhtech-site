@@ -3,223 +3,155 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AAYHtech — App Development Studio</title>
+  <title>AAYHtech — App Development</title>
   <link rel="icon" type="image/svg+xml" href="icon.svg">
-  <meta name="description" content="AAYHtech is an app development studio. We design and build iOS and Android apps for businesses, from idea to live on both stores.">
+  <meta name="description" content="AAYHtech builds iOS and Android apps for businesses. Shipped, real, on both stores.">
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    :root{
-      --bg:#0a0e14; --bg2:#0d1420; --card:#111a26; --border:#1e2a3a;
-      --teal:#14b8a6; --teal2:#2dd4bf; --tealdeep:#0F766E;
-      --text:#e7eef6; --muted:#93a1b3;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --teal: #0F766E;
+      --dark: #0f1720;
+      --muted: #5b6b7a;
+      --bg: #ffffff;
+      --card: #f6f8f9;
     }
-    html{ scroll-behavior:smooth; }
-    body{
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-      background:var(--bg); color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased;
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--dark);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
-    .wrap{ max-width:1080px; margin:0 auto; padding:0 24px; }
-    a{ color:inherit; text-decoration:none; }
-
-    nav{
-      position:sticky; top:0; z-index:50;
-      background:rgba(10,14,20,0.72); backdrop-filter:blur(12px);
-      border-bottom:1px solid var(--border);
+    .wrap { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+    header {
+      padding: 22px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eceff1;
     }
-    .nav-in{ display:flex; align-items:center; justify-content:space-between; padding:16px 0; }
-    .nav-in img{ height:46px; display:block; }
-    .nav-cta{
-      background:var(--teal); color:#04201c; font-weight:700; font-size:15px;
-      padding:11px 20px; border-radius:10px; transition:transform .15s, background .15s;
+    .logo { font-weight: 800; font-size: 22px; letter-spacing: -0.5px; }
+    .logo span { color: var(--teal); }
+    .nav-cta {
+      background: var(--teal); color: #fff; text-decoration: none;
+      padding: 10px 18px; border-radius: 8px; font-weight: 600; font-size: 15px;
     }
-    .nav-cta:hover{ background:var(--teal2); transform:translateY(-1px); }
-
-    .hero{ position:relative; text-align:center; padding:120px 0 90px; overflow:hidden; }
-    .hero::before{
-      content:""; position:absolute; inset:0;
-      background:radial-gradient(700px circle at 50% -10%, rgba(20,184,166,0.22), transparent 60%);
-      pointer-events:none;
+    .hero { padding: 90px 0 70px; text-align: center; }
+    .hero h1 {
+      font-size: 46px; line-height: 1.1; letter-spacing: -1.5px;
+      font-weight: 800; margin-bottom: 20px;
     }
-    .hero .inner{ position:relative; z-index:1; }
-    .pill{
-      display:inline-block; font-size:13px; font-weight:600; color:var(--teal2);
-      border:1px solid var(--border); background:var(--card);
-      padding:7px 16px; border-radius:999px; margin-bottom:28px;
+    .hero h1 span { color: var(--teal); }
+    .hero p {
+      font-size: 20px; color: var(--muted); max-width: 620px;
+      margin: 0 auto 34px;
     }
-    .hero h1{
-      font-size:clamp(38px,7vw,68px); line-height:1.05; letter-spacing:-2px;
-      font-weight:800; margin-bottom:22px;
+    .btn {
+      display: inline-block; background: var(--teal); color: #fff;
+      text-decoration: none; padding: 15px 32px; border-radius: 10px;
+      font-weight: 700; font-size: 17px;
     }
-    .grad{ background:linear-gradient(90deg,var(--teal2),var(--teal)); -webkit-background-clip:text; background-clip:text; color:transparent; }
-    .hero p{ font-size:clamp(17px,2.4vw,21px); color:var(--muted); max-width:640px; margin:0 auto 38px; }
-    .btns{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
-    .btn{ display:inline-block; font-weight:700; font-size:17px; padding:16px 34px; border-radius:12px; transition:transform .15s, background .15s; }
-    .btn.primary{ background:var(--teal); color:#04201c; }
-    .btn.primary:hover{ background:var(--teal2); transform:translateY(-2px); }
-    .btn.ghost{ border:1px solid var(--border); color:var(--text); background:var(--card); }
-    .btn.ghost:hover{ border-color:var(--teal); transform:translateY(-2px); }
-
-    .stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; padding:10px 0 70px; }
-    .stat{ text-align:center; }
-    .stat .n{ font-size:40px; font-weight:800; color:var(--teal2); letter-spacing:-1px; }
-    .stat .l{ color:var(--muted); font-size:15px; margin-top:4px; }
-
-    section.block{ padding:80px 0; border-top:1px solid var(--border); }
-    .eyebrow{ color:var(--teal); font-weight:700; font-size:14px; letter-spacing:1px; text-transform:uppercase; }
-    h2{ font-size:clamp(28px,4vw,40px); letter-spacing:-1px; font-weight:800; margin:10px 0 40px; }
-
-    .grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
-    .card{
-      background:var(--card); border:1px solid var(--border); border-radius:16px; padding:30px;
-      transition:transform .18s, border-color .18s;
+    .btn.secondary {
+      background: transparent; color: var(--teal);
+      border: 2px solid var(--teal); margin-left: 12px;
     }
-    .card:hover{ transform:translateY(-4px); border-color:var(--teal); }
-    .card .ico{
-      width:48px; height:48px; border-radius:12px; background:rgba(20,184,166,0.12);
-      display:flex; align-items:center; justify-content:center; margin-bottom:18px;
+    section { padding: 60px 0; border-top: 1px solid #eceff1; }
+    h2 { font-size: 30px; letter-spacing: -0.8px; margin-bottom: 28px; }
+    .services { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .service {
+      background: var(--card); padding: 26px; border-radius: 12px;
     }
-    .card .ico svg{ width:24px; height:24px; stroke:var(--teal2); fill:none; stroke-width:2; }
-    .card h3{ font-size:20px; margin-bottom:8px; }
-    .card p{ color:var(--muted); font-size:15px; }
-
-    .work .card{ padding:0; overflow:hidden; }
-    .work .top{ padding:30px 30px 24px; }
-    .tag{ display:inline-block; font-size:12px; font-weight:700; padding:5px 12px; border-radius:999px; margin-bottom:14px; }
-    .tag.live{ background:rgba(20,184,166,0.15); color:var(--teal2); }
-    .tag.dev{ background:rgba(251,191,36,0.15); color:#fbbf24; }
-    .work h3{ font-size:22px; margin-bottom:8px; }
-    .work p{ color:var(--muted); font-size:15px; }
-
-    .steps{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
-    .step .num{ font-size:15px; font-weight:800; color:var(--teal); border:1px solid var(--border); width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:16px; }
-    .step h4{ font-size:17px; margin-bottom:6px; }
-    .step p{ color:var(--muted); font-size:14px; }
-
-    .cta{
-      text-align:center; background:linear-gradient(160deg,#0f2b28,#0a0e14);
-      border:1px solid var(--border); border-radius:24px; padding:70px 30px; margin:80px 0;
+    .service h3 { font-size: 19px; margin-bottom: 8px; }
+    .service p { color: var(--muted); font-size: 15px; }
+    .proof { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .app {
+      border: 1px solid #e3e8ea; padding: 24px; border-radius: 12px;
     }
-    .cta h2{ margin-bottom:14px; }
-    .cta p{ color:var(--muted); font-size:18px; margin-bottom:32px; }
-
-    footer{ border-top:1px solid var(--border); padding:34px 0; color:var(--muted); font-size:14px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
-    footer a:hover{ color:var(--teal2); }
-
-    @media (max-width:720px){
-      .grid,.steps{ grid-template-columns:1fr; }
-      .stats{ grid-template-columns:1fr; gap:32px; }
-      .hero{ padding:80px 0 60px; }
+    .app .tag {
+      display: inline-block; background: var(--teal); color: #fff;
+      font-size: 12px; font-weight: 700; padding: 4px 10px;
+      border-radius: 20px; margin-bottom: 12px;
+    }
+    .app h3 { font-size: 20px; margin-bottom: 6px; }
+    .app p { color: var(--muted); font-size: 15px; }
+    .contact { text-align: center; }
+    .contact p { color: var(--muted); font-size: 18px; margin-bottom: 26px; }
+    footer {
+      text-align: center; padding: 40px 0; color: var(--muted);
+      font-size: 14px; border-top: 1px solid #eceff1;
+    }
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 34px; }
+      .hero p { font-size: 18px; }
+      .services, .proof { grid-template-columns: 1fr; }
+      .btn.secondary { margin-left: 0; margin-top: 12px; }
     }
   </style>
 </head>
 <body>
-
-  <nav>
-    <div class="wrap nav-in">
-      <a href="#" aria-label="AAYHtech"><img src="logo-dark.svg" alt="AAYHtech"></a>
-      <a href="#contact" class="nav-cta">Get in touch</a>
-    </div>
-  </nav>
-
-  <header class="hero">
-    <div class="wrap inner">
-      <span class="pill">Live on the App Store and Google Play</span>
-      <h1>We build apps that <span class="grad">ship</span>.</h1>
-      <p>AAYHtech is an app development studio. We take your idea and turn it into a real iOS and Android app, from first sketch to live on both stores.</p>
-      <div class="btns">
-        <a href="#contact" class="btn primary">Start your project</a>
-        <a href="#work" class="btn ghost">See our work</a>
-      </div>
-    </div>
-  </header>
-
   <div class="wrap">
-    <div class="stats">
-      <div class="stat"><div class="n">2</div><div class="l">Apps built</div></div>
-      <div class="stat"><div class="n">2</div><div class="l">App stores, live</div></div>
-      <div class="stat"><div class="n">100%</div><div class="l">Cross-platform</div></div>
-    </div>
-  </div>
 
-  <section class="block">
-    <div class="wrap">
-      <span class="eyebrow">What we do</span>
-      <h2>From idea to app store</h2>
-      <div class="grid">
-        <div class="card">
-          <div class="ico"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg></div>
-          <h3>iOS and Android apps</h3>
-          <p>One codebase, both platforms. Built with React Native and Expo for speed without cutting quality.</p>
+    <header>
+      <a href="#" aria-label="AAYHtech"><img src="logo.svg" alt="AAYHtech" style="height:38px;display:block"></a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
+    </header>
+
+    <div class="hero">
+      <h1>We build <span>apps</span> that ship.</h1>
+      <p>AAYHtech designs and develops iOS and Android apps for businesses — from first idea to live on the App Store and Google Play.</p>
+      <a href="#contact" class="btn">Start your project</a>
+      <a href="#work" class="btn secondary">See our work</a>
+    </div>
+
+    <section id="services">
+      <h2>What we do</h2>
+      <div class="services">
+        <div class="service">
+          <h3>iOS & Android apps</h3>
+          <p>One codebase, both platforms. Built with React Native and Expo for speed and quality.</p>
         </div>
-        <div class="card">
-          <div class="ico"><svg viewBox="0 0 24 24"><path d="M4.5 16.5 3 21l4.5-1.5"/><path d="M14 4c3 0 6 3 6 6l-8 8-4-4 8-8c0-1 1-2 2-2z"/></svg></div>
+        <div class="service">
           <h3>From idea to store</h3>
-          <p>We handle the full journey: design, build, testing, and getting your app approved on both stores.</p>
+          <p>We handle the full journey — design, build, testing, and getting your app approved on both stores.</p>
         </div>
-        <div class="card">
-          <div class="ico"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
-          <h3>Backend and data</h3>
-          <p>Secure sign-in, databases, and cloud so your app stays fast and reliable as it grows.</p>
+        <div class="service">
+          <h3>Backend & data</h3>
+          <p>Secure sign-in, databases, and cloud infrastructure so your app works reliably at scale.</p>
         </div>
-        <div class="card">
-          <div class="ico"><svg viewBox="0 0 24 24"><path d="M14 6a4 4 0 0 0-5 5l-6 6 3 3 6-6a4 4 0 0 0 5-5l-3 3-3-3 3-3z"/></svg></div>
+        <div class="service">
           <h3>Ongoing support</h3>
           <p>Updates, fixes, and new features after launch. We stay with the app, not just the build.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="block work" id="work">
-    <div class="wrap">
-      <span class="eyebrow">Our work</span>
+    <section id="work">
       <h2>Real apps, on real stores</h2>
-      <div class="grid">
-        <div class="card">
-          <div class="top">
-            <span class="tag live">Live · iOS and Android</span>
-            <h3>Baytkeep</h3>
-            <p>A home inventory app shipped to both the App Store and Google Play. Track everything you own, private and offline.</p>
-          </div>
+      <div class="proof">
+        <div class="app">
+          <span class="tag">Live · iOS & Android</span>
+          <h3>Baytkeep</h3>
+          <p>A home inventory app, shipped to both the App Store and Google Play. Track everything you own, offline and private.</p>
         </div>
-        <div class="card">
-          <div class="top">
-            <span class="tag dev">In development</span>
-            <h3>AJJAR</h3>
-            <p>An Arabic-first rental platform for short-term stays across Iraq. Browse, list, and connect, built for the local market.</p>
-          </div>
+        <div class="app">
+          <span class="tag">In development</span>
+          <h3>AJJAR</h3>
+          <p>An Arabic-first rental platform for short-term stays across Iraq. Browse, list, and connect — built for the local market.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="block">
-    <div class="wrap">
-      <span class="eyebrow">How we work</span>
-      <h2>A clear path, every time</h2>
-      <div class="steps">
-        <div class="step"><div class="num">1</div><h4>Idea</h4><p>We scope what you want and what it really needs.</p></div>
-        <div class="step"><div class="num">2</div><h4>Design</h4><p>We design the screens before we write any code.</p></div>
-        <div class="step"><div class="num">3</div><h4>Build</h4><p>One codebase, tested on real devices as we go.</p></div>
-        <div class="step"><div class="num">4</div><h4>Ship</h4><p>Approved and live on the App Store and Google Play.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <div class="wrap">
-    <div class="cta" id="contact">
+    <section id="contact" class="contact">
       <h2>Have an app idea?</h2>
-      <p>Tell us what you want to build. We will tell you how to make it real.</p>
-      <a href="mailto:aayhtech@gmail.com" class="btn primary">Email us</a>
-    </div>
+      <p>Tell us what you want to build. We'll tell you how to make it real.</p>
+      <a href="mailto:aayhtech@gmail.com" class="btn">Email us</a>
+      <a href="sms:4237606098" class="btn ghost" style="margin-left:12px;">Text us: 4237606098</a>
+    </section>
+
+    <footer>
+      © 2026 AAYHtech. Built in the USA.
+    </footer>
+
   </div>
-
-  <footer>
-    <div class="wrap" style="display:flex;justify-content:space-between;width:100%;flex-wrap:wrap;gap:10px;">
-      <span>© 2026 AAYHtech. Built in the USA.</span>
-      <a href="mailto:aayhtech@gmail.com">aayhtech@gmail.com</a>
-    </div>
-  </footer>
-
 </body>
 </html>
